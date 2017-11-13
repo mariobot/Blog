@@ -1,0 +1,11 @@
+C:\Desarrollo\Blog\Blog\Blog\bin\Debug\netcoreapp2.0\Blog.deps.json
+C:\Desarrollo\Blog\Blog\Blog\bin\Debug\netcoreapp2.0\Blog.runtimeconfig.json
+C:\Desarrollo\Blog\Blog\Blog\bin\Debug\netcoreapp2.0\Blog.runtimeconfig.dev.json
+C:\Desarrollo\Blog\Blog\Blog\bin\Debug\netcoreapp2.0\Blog.dll
+C:\Desarrollo\Blog\Blog\Blog\obj\Debug\netcoreapp2.0\Blog.csprojResolveAssemblyReference.cache
+C:\Desarrollo\Blog\Blog\Blog\obj\Debug\netcoreapp2.0\Blog.csproj.CoreCompileInputs.cache
+C:\Desarrollo\Blog\Blog\Blog\obj\Debug\netcoreapp2.0\Blog.AssemblyInfoInputs.cache
+C:\Desarrollo\Blog\Blog\Blog\obj\Debug\netcoreapp2.0\Blog.AssemblyInfo.cs
+C:\Desarrollo\Blog\Blog\Blog\bin\Debug\netcoreapp2.0\Blog.pdb
+C:\Desarrollo\Blog\Blog\Blog\obj\Debug\netcoreapp2.0\Blog.dll
+C:\Desarrollo\Blog\Blog\Blog\obj\Debug\netcoreapp2.0\Blog.pdb
