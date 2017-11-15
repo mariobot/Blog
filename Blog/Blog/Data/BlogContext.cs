@@ -7,7 +7,7 @@ using Blog.Models;
 
 namespace Blog.Data
 {
-    public class BlogContext : DbContext
+    public class BlogContext : DbContext , IBlogContext
     {
         public BlogContext(DbContextOptions<BlogContext> options) : base(options)
         {

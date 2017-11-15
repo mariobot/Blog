@@ -1,0 +1,9 @@
+﻿@model Blog.Models.ViewModels.ListViewModel
+
+@if (Model.Posts.Count > 0)
+{
+    @Html.Partial("_PostTemplate", Model.Posts)
+}
+else { 
+    <p>No Post Found</p>
+}

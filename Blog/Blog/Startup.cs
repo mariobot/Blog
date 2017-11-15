@@ -25,7 +25,11 @@ namespace Blog
         {
             services.AddDbContext<BlogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddSingleton<IBlogContext, BlogContext>();
+            services.AddSingleton<IBlogRepository, BlogRepository>();
+
             services.AddMvc();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
