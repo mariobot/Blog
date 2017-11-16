@@ -51,7 +51,14 @@ namespace Blog
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Blog}/{action=Posts}/{id?}");
+            });
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    "Category",
+                    "Category/{category}",
+                    new { controller = "Blog", action = "Category" });
             });
         }
     }

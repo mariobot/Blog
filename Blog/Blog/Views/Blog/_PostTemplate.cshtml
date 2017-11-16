@@ -4,7 +4,7 @@
 {
     <div class="blog-post">
         <h2 class="blog-post-title">@item.Title</h2>
-        <p class="blog-post-meta">@item.PostedOn<a href="#"> @item.Meta</a></p>
+        <p class="blog-post-meta">@item.PostedOn<a asp-controller="Blog" asp-action="Category" asp-route-category="@item.Category.UrlSlug" > @item.Meta</a></p>
         <div class="blog-description">
             @item.Description
         </div>
