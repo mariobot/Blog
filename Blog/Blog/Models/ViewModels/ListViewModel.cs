@@ -12,6 +12,7 @@ namespace Blog.Models.ViewModels
         {
             Posts = _blogRepository.Posts(p, 10);
             TotalPosts = _blogRepository.TotalPosts();
+            Categories = _blogRepository.Categories();
         }
 
         public ListViewModel(IBlogRepository _blogRepository, string categorySlug, int p)
@@ -19,10 +20,19 @@ namespace Blog.Models.ViewModels
             Posts = _blogRepository.PostsForCategory(categorySlug, p - 1, 10);
             TotalPosts = _blogRepository.TotalPostsForCategory(categorySlug);
             Category = _blogRepository.Category(categorySlug);
+            Categories = _blogRepository.Categories();
+        }
+
+        public ListViewModel(IBlogRepository _blogRepository, int p, string urlSlug)
+        {
+            Posts = _blogRepository.Post(urlSlug);
+            TotalPosts = _blogRepository.TotalPosts();
+            Categories = _blogRepository.Categories();
         }
 
         public IList<Post> Posts { get; set; }
         public int TotalPosts { get; set; }
         public Category Category { get; set; }
+        public IList<Category> Categories { get; set; }        
     }
 }

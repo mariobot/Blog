@@ -43,12 +43,14 @@ namespace Blog.Controllers
 
             return View("Posts", ViewModel);
         }
-                
-        public PartialViewResult Sidebars()
-        {
-            var widgetViewModel = new WidgetViewModel(new BlogRepository(_blogContext));
 
-            return PartialView("_Sidebars",widgetViewModel);
+        public ViewResult Post(string urlslug,int p = 1)
+        {
+            var ViewModel = new ListViewModel(new BlogRepository(_blogContext), p, urlslug);
+
+            ViewBag.Title = "Post";
+
+            return View("Posts",ViewModel);
         }
 
         //public IViewComponentResult InvokeAsync()

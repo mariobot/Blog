@@ -1,0 +1,19 @@
+﻿@model IList<Blog.Models.Post>
+
+<div class="sidebar-module">
+    <h3>Last Posts</h3>
+
+    @if (Model.Count > 0)
+    {
+        <ol class="list-unstyled">
+            @foreach (var post in Model)
+            {
+                <li><a asp-controller="Blog" asp-action="Post" asp-route-urlslug="@post.UrlSlug">@post.Title</a></li>
+            }
+        </ol>
+    }
+    else
+    {
+        <p>No posts found!</p>
+    }
+</div>

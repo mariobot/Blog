@@ -17,5 +17,6 @@ namespace Blog.Data
 
         IList<Category> Categories();
 
+        IList<Post> Post(string urlSlug);
     }
 }

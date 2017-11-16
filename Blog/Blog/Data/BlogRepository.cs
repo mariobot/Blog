@@ -65,5 +65,12 @@ namespace Blog.Data
 
             return Categories;
         }
+
+        public IList<Post> Post(string urlSlug)
+        {
+            var Post = _context.Posts.Where(p => p.UrlSlug.Equals(urlSlug)).ToList();
+
+            return Post;
+        }
     }
 }
