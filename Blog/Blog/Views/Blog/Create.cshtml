@@ -1,0 +1,76 @@
+﻿@model Blog.Models.Post
+
+@{
+    ViewData["Title"] = "New Post";
+}
+
+<div class="col-md-8 blog-main">
+
+    <h2>Create New Post</h2>
+    <hr />
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ShortDescription" class="control-label"></label>
+            @*<input asp-for="ShortDescription" class="form-control" />*@
+            @Html.TextAreaFor(model => model.ShortDescription , new
+            {   
+                @class = "form-control input-lg",                
+            })
+            <span asp-validation-for="ShortDescription" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Category" class="control-label"></label>
+            <select asp-for="Category.CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
+                <option value="">-- Select Category --</option>
+            </select>
+            <span asp-validation-for="Category.CategoryId" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Meta" class="control-label"></label>
+            <input asp-for="Meta" class="form-control" />
+            <span asp-validation-for="Meta" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UrlSlug" class="control-label"></label>
+            <input asp-for="UrlSlug" class="form-control" />
+            <span asp-validation-for="UrlSlug" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input asp-for="Published" /> @Html.DisplayNameFor(model => model.Published)
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PostedOn" class="control-label"></label>
+            <input asp-for="PostedOn" class="form-control" />
+            <span asp-validation-for="PostedOn" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Modified" class="control-label"></label>
+            <input asp-for="Modified" class="form-control" />
+            <span asp-validation-for="Modified" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create Post" class="btn btn-default" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}     
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+}       

@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Blog.Data;
+using Blog.Models;
 using Blog.Models.ViewModels;
-using System.Web;
-using System.Net;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Blog.Controllers
 {
@@ -51,6 +50,43 @@ namespace Blog.Controllers
             ViewBag.Title = "Post";
 
             return View("Posts",ViewModel);
+        }
+
+        public ViewResult Create()
+        {
+            var Post = new Post
+            {
+                PostedOn = DateTime.Now,
+                Published = true,
+                Modified = DateTime.Now,                
+            };
+
+            PopulateCategoriesDropDownList();
+
+            return View(Post);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Title, ShortDescription, Description, Meta, UrlSlug, Published, PostedOn, Modified")] Post post)
+        {
+            if (ModelState.IsValid)
+            {
+                //post.Category = _blogContext.Categories.Where(c => c.CategoryId.Equals(post.Category.CategoryId))
+                _blogContext.Add(post);
+                await _blogContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Posts));
+            }
+
+            return View(post);
+        }
+
+        private void PopulateCategoriesDropDownList(object selectedCategory = null)
+        {
+            var categoryQuery = from category in _blogContext.Categories
+                                   orderby category.Name
+                                   select category;
+            ViewBag.CategoryId = new SelectList(categoryQuery.AsNoTracking(), "CategoryId", "Name", selectedCategory);
         }
 
         //public IViewComponentResult InvokeAsync()
