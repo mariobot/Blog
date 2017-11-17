@@ -11,9 +11,10 @@ using System;
 namespace Blog.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    partial class BlogContextModelSnapshot : ModelSnapshot
+    [Migration("20171117003256_UpdateCategoryId")]
+    partial class UpdateCategoryId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,6 +48,10 @@ namespace Blog.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CategoryId");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(5000);
 
                     b.Property<string>("Meta")
                         .IsRequired()

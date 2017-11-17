@@ -68,11 +68,10 @@ namespace Blog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title, ShortDescription, Description, Meta, UrlSlug, Published, PostedOn, Modified")] Post post)
+        public async Task<IActionResult> Create([Bind("Title, ShortDescription, Meta, UrlSlug, Published, PostedOn, Modified, CategoryId")] Post post)
         {
             if (ModelState.IsValid)
-            {
-                //post.Category = _blogContext.Categories.Where(c => c.CategoryId.Equals(post.Category.CategoryId))
+            {                
                 _blogContext.Add(post);
                 await _blogContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Posts));

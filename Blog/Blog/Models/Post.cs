@@ -20,10 +20,6 @@ namespace Blog.Models
         public string ShortDescription { get; set; }
 
         [Required]
-        [StringLength(5000, MinimumLength = 3)]
-        public string Description { get; set; }
-
-        [Required]
         [StringLength(1000)]
         public string Meta { get; set; }
 
@@ -38,6 +34,8 @@ namespace Blog.Models
         public DateTime PostedOn { get; set; }
 
         public DateTime? Modified { get; set; }
+
+        public int CategoryId { get; set; }
 
         public Category Category { get; set; }
 
