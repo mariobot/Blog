@@ -13,6 +13,8 @@ namespace Blog.Models.ViewModels
             Posts = _blogRepository.Posts(p, 10);
             TotalPosts = _blogRepository.TotalPosts();
             Categories = _blogRepository.Categories();
+            LastPosts = _blogRepository.LastPosts();
+            
         }
 
         public ListViewModel(IBlogRepository _blogRepository, string categorySlug, int p)
@@ -21,6 +23,7 @@ namespace Blog.Models.ViewModels
             TotalPosts = _blogRepository.TotalPostsForCategory(categorySlug);
             Category = _blogRepository.Category(categorySlug);
             Categories = _blogRepository.Categories();
+            LastPosts = _blogRepository.LastPosts();
         }
 
         public ListViewModel(IBlogRepository _blogRepository, int p, string urlSlug)
@@ -28,11 +31,13 @@ namespace Blog.Models.ViewModels
             Posts = _blogRepository.Post(urlSlug);
             TotalPosts = _blogRepository.TotalPosts();
             Categories = _blogRepository.Categories();
+            LastPosts = _blogRepository.LastPosts();
         }
 
         public IList<Post> Posts { get; set; }
         public int TotalPosts { get; set; }
         public Category Category { get; set; }
         public IList<Category> Categories { get; set; }        
+        public IList<Post> LastPosts { get; set; }
     }
 }

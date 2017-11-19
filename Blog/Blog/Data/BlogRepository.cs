@@ -41,6 +41,7 @@ namespace Blog.Data
                                 .Take(pageSize)
                                 .Include(p => p.Category)
                                 .Include(p => p.TagsPosts)
+                                .OrderByDescending(p => p.PostedOn)
                                 .ToList();
             return Posts;
         }
@@ -71,6 +72,13 @@ namespace Blog.Data
             var Post = _context.Posts.Where(p => p.UrlSlug.Equals(urlSlug)).ToList();
 
             return Post;
+        }
+
+        public IList<Post> LastPosts()
+        {
+            var LastPosts = _context.Posts.Where(p => p.Published).OrderByDescending(p => p.PostedOn).ToList();
+
+            return LastPosts;
         }
     }
 }
