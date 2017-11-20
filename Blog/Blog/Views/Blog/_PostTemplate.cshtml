@@ -4,7 +4,9 @@
 {
     <div class="blog-post">
         <h2 class="blog-post-title">@item.Title</h2>
-        <p class="blog-post-meta">@item.PostedOn Category:<a asp-controller="Blog" asp-action="Category" asp-route-category="@item.Category.UrlSlug" > @item.Category.Name</a></p>        
+        <p class="blog-post-meta">@item.PostedOn Category:<a asp-controller="Blog" asp-action="Category" asp-route-category="@item.Category.UrlSlug" > @item.Category.Name</a>
+            <a asp-controller="Blog" asp-action="Edit" asp-route-id="@item.PostId">Edit</a>
+        </p>        
         <div class="">@Html.Raw(@item.ShortDescription)</div>
     </div>
 }

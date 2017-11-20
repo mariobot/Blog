@@ -76,7 +76,7 @@ namespace Blog.Controllers
                 await _blogContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Posts));
             }
-
+            PopulateCategoriesDropDownList("CategoryId");
             return View(post);
         }
 
@@ -88,12 +88,28 @@ namespace Blog.Controllers
             ViewBag.CategoryId = new SelectList(categoryQuery.AsNoTracking(), "CategoryId", "Name", selectedCategory);
         }
 
-        //public IViewComponentResult InvokeAsync()
-        //{            
-        //    var widgetViewModel = new WidgetViewModel(new BlogRepository(_blogContext));
-        //    //IEnumerable<tableRowClass> mc = await context.tableRows.ToListAsync();
-        //    return PartialView("_Sidebars", widgetViewModel);
-        //}
+        public ActionResult Edit(int id)
+        {
+            var post = _blogContext.Posts.Where(p => p.PostId.Equals(id)).FirstOrDefault();
+
+            PopulateCategoriesDropDownList(post.CategoryId);
+
+            return View(post);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind("PostId, Title, ShortDescription, Meta, UrlSlug, Published, PostedOn, Modified, CategoryId")] Post post)
+        {
+            if (ModelState.IsValid)
+            {
+                _blogContext.Update(post);
+                await _blogContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Posts));
+            }
+            PopulateCategoriesDropDownList("CategoryId");
+            return View(post);
+        }
 
     }
 }
