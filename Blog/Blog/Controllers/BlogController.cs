@@ -110,6 +110,19 @@ namespace Blog.Controllers
             PopulateCategoriesDropDownList("CategoryId");
             return View(post);
         }
+        
+        public ActionResult Delete(int id)
+        {
+            var post = _blogContext.Posts.Where(p => p.PostId.Equals(id)).FirstOrDefault();
 
+            if (!string.IsNullOrEmpty(post.PostId.ToString()))
+            {
+                _blogContext.Remove(post);
+                _blogContext.SaveChanges();
+                return RedirectToAction("Posts");
+            }
+
+            return View();
+        }
     }
 }
